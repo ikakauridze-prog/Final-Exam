@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %}{{ product['title'] }}{% endblock %}
+{% block content %}
+<div class="product-page">
+    <img src="{{ product['image'] }}" alt="{{ product['title'] }}">
+    <div>
+        <h3>{{ product['title'] }}</h3>
+        <p class="text-muted">{{ product['category'] }}</p>
+        <p>{{ product['description'] }}</p>
+        <h4>${{ product['price'] }}</h4>
+
+        {% if session.get('user_id') %}
+        <form action="/add_to_cart" method="POST" class="mt-3">
+            <input type="hidden" name="product_id" value="{{ product['id'] }}">
+            <div class="mb-2">
+                <label for="quantity" class="form-label">Quantity</label>
+                <input type="number" name="quantity" min="1" value="1" class="form-control" style="width:100px;">
+            </div>
+            <button type="submit" class="btn btn-primary">Add to Cart</button>
+        </form>
+        {% else %}
+            <p class="text-warning">Login to buy this product.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

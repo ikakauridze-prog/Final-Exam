@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Buy {{ product.title }}</title>
+        <link rel="stylesheet" href="/static/styles.css">
+    </head>
+
+    <body>
+        <header class="header">
+            <div class="container">
+                <a href="/" class="logo">ShopLogo</a>
+                <nav class="nav">
+                    {% if session.get("user_id") %}
+                    <span class="user-info">
+                        <img src="/static/user-icon.png" alt="User" class="user-icon">
+                        {{ session.username }}
+                    </span>
+                    <a href="/cart">Cart</a>
+                    <a href="/orders">Orders</a>
+                    <a href="/logout">Logout</a>
+                    {% else %}
+                    <a href="/login">Login</a>
+                    <a href="/register">Register</a>
+                    {% endif %}
+                </nav>
+            </div>
+        </header>
+
+        <main class="container main-content">
+            <div class="product-detail">
+                <h1>{{ product.title }}</h1>
+                <div class="product-image">
+                    <img src="{{ product.image }}" alt="{{ product.title }}">
+                </div>
+                <p class="description">{{ product.description }}</p>
+                <p class="price"><strong>Price:</strong> ${{ product.price }}</p>
+
+                <form method="post" action="/add_to_cart">
+                    <input type="hidden" name="product_id" value="{{ product.id }}">
+                    Quantity: <input type="number" name="quantity" value="1" min="1">
+                    <button type="submit">Add to Cart</button>
+                </form>
+
+
+                <div class="links">
+                    <a href="/cart" class="link-btn">Go to Cart</a>
+                    <a href="/" class="link-btn">Back to Shop</a>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2026 Shop. All rights reserved.</p>
+        </footer>
+    </body>
+
+</html>

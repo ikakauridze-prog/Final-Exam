@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block title %}Orders{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash-messages">
+          {% for message in messages %}
+            <div class="alert alert-success">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <h2>Your Orders</h2>
+
+    {% if orders %}
+        {% for order in orders %}
+            <div class="order-card">
+                <h3>Order #{{ order.id }} - {{ order.created }}</h3>
+
+                <ul class="order-items">
+                    {% for item in order.products_list %}
+                        <li class="order-item">
+                            <img src="{{ item.image }}" alt="{{ item.title }}" class="order-item-img">
+                            <div class="order-item-details">
+                                <span class="order-item-title">{{ item.title }}</span>
+                                <span class="order-item-qty">Qty: {{ item.quantity }}</span>
+                                <span class="order-item-total">$ {{ item.total|round(2) }}</span>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <p class="order-total"><strong>Order Total:</strong> ${{ order.total|round(2) }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>You have no orders yet.</p>
+    {% endif %}
+
+</div>
+{% endblock %}

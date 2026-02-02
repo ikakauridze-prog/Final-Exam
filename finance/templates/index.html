@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="container text-center my-5">
+
+    <div class="hero bg-light p-5 rounded shadow-sm">
+        <h1 class="display-4 mb-3">Welcome to Our Shop!</h1>
+        <p class="lead mb-4">
+            Discover amazing products and enjoy a seamless shopping experience.
+        </p>
+        <a href="/cart" class="btn btn-success btn-lg me-2">View Cart</a>
+        <a href="/products" class="btn btn-primary btn-lg">Shop Now</a>
+    </div>
+
+    <div class="row mt-5 g-4">
+        <div class="col-md-4 text-center">
+            <div class="p-4 bg-white rounded shadow-sm h-100">
+                <h3>Fast Delivery</h3>
+                <p>Get your products delivered quickly and safely to your doorstep.</p>
+            </div>
+        </div>
+        <div class="col-md-4 text-center">
+            <div class="p-4 bg-white rounded shadow-sm h-100">
+                <h3>Quality Products</h3>
+                <p>We offer only top-quality products for our valued customers.</p>
+            </div>
+        </div>
+        <div class="col-md-4 text-center">
+            <div class="p-4 bg-white rounded shadow-sm h-100">
+                <h3>Secure Payments</h3>
+                <p>Shop with confidence using our secure payment system.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<style>
+.hero {
+    background: linear-gradient(135deg, #6c63ff, #3f51b5);
+    color: #fff;
+}
+.hero .btn {
+    min-width: 150px;
+}
+</style>
+{% endblock %}
